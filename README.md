@@ -44,16 +44,22 @@ The project was completed as a take-home data science exercise for a clinical re
 ---
 
 ## Pipeline Summary
-
+```mermaid
+flowchart LR;
+A(["Loading Source Data"]) --> B;
+B(["Preprocessing"]) --> C;
+C(["EDA"]) --> D;
+D(["Benchmarking Models"]) --> E;
+E(["XGBoost + Hyperparameter Tuning"]) --> F(["SHAP Interpretation"])
 ```
-Data Import → Preprocessing → EDA → Benchmark Models → XGBoost + Hyperparameter Tuning → SHAP Interpretability
-```
 
-1. **Data preprocessing** — Identified and removed 6 rows with invalid `?` entries in `ca` and `thal` columns (~2% of data). Redefined the multi-class target into a binary outcome.
+### **Pipeline Details**
+
+1. **Data preprocessing** — Identified and removed 6 rows with invalid data entries (`?`) entries in `ca` and `thal` columns (~2% of data). Redefined the multi-class `target` column into a binary outcome for clarity.
 2. **Exploratory data analysis** — Correlation heatmap, distribution plots, and grouped visualisations examining relationships between clinical features and heart disease presence.
-3. **Classification I — Benchmark models** — Logistic Regression and Decision Tree trained and evaluated using stratified 10-fold cross-validation across accuracy, sensitivity, and specificity.
-4. **Classification II — XGBoost + RandomizedSearchCV** — Hyperparameter optimisation over 5 parameters using 5-fold CV, scored on F1. Compared optimised vs. default model performance.
-5. **Classification III — SHAP interpretability** — TreeExplainer applied to the optimised XGBoost model to identify the most influential clinical predictors and their directional effects.
+3. **Classification I — Benchmark models** — Logistic Regression and Decision Tree models trained via `Scikit-learn` library and evaluated using `stratified 10-fold cross-validation` across accuracy, sensitivity, and specificity.
+4. **Classification II — XGBoost + RandomizedSearchCV** — Hyperparameter optimisation via `XGBoost` & `RandomizedSearchCV` over 5 parameters using `5-fold cross-validation`, scored on F1. Compared optimised vs. default model performance.
+5. **Classification III — SHAP interpretability** — `TreeExplainer` applied to the optimised XGBoost model to identify the most influential clinical predictors and their directional effects.
 
 ---
 
